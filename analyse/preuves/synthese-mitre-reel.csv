@@ -1,0 +1,6 @@
+intention,technique,occurrences
+Découverte de comptes,T1087.001,2
+Téléchargement de charge,T1105,2
+Découverte de processus,T1057,1
+Découverte utilisateur,T1033,1
+Reconnaissance système,T1082,1

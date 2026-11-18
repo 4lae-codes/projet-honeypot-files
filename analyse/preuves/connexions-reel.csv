@@ -1,0 +1,7 @@
+timestamp,src_ip,dst_port,username,password,service,succes
+2026-11-18 12:30:44.436918+00:00,127.0.0.1,21,admin,test,FTP,False
+2026-11-18 12:30:44.456796+00:00,127.0.0.1,80,admin,test,HTTP,False
+2026-11-18 12:30:44.470797+00:00,127.0.0.1,80,root,123456,HTTP,False
+2026-11-18 12:33:05.435250+00:00,172.20.10.2,2222,root,"&\xc3\x89""'(-",SSH,False
+2026-11-18 12:33:15.837006+00:00,172.20.10.2,2222,root,password*,SSH,False
+2026-11-18 12:33:21.681999+00:00,172.20.10.2,2222,root,password,SSH,True
