@@ -9,8 +9,7 @@
 	"description": "",
 	"filters": {
 		"platforms": [
-			"Linux",
-			"Identity Provider"
+			"Linux"
 		]
 	},
 	"sorting": 0,
@@ -72,9 +71,9 @@
 		{
 			"techniqueID": "T1110",
 			"tactic": "credential-access",
-			"score": 3,
+			"score": 35,
 			"color": "#e60d0d",
-			"comment": "2 échecs puis succès root/password (SSH), tentatives FTP/HTTP",
+			"comment": "Hydra sur SSH, Telnet, FTP, MySQL ; 13 succès (root, admin, ubuntu)",
 			"enabled": true,
 			"metadata": [],
 			"links": [],
@@ -83,9 +82,20 @@
 		{
 			"techniqueID": "T1105",
 			"tactic": "command-and-control",
-			"score": 2,
+			"score": 1,
 			"color": "#e6d60d",
-			"comment": "wget/curl vers example.com (tentative)",
+			"comment": "wget et curl vers example.com/test.sh ; 1 fichier capturé (SHA-256 25ddf2c8...)",
+			"enabled": true,
+			"metadata": [],
+			"links": [],
+			"showSubtechniques": false
+		},
+		{
+			"techniqueID": "T1046",
+			"tactic": "discovery",
+			"score": 21,
+			"color": "#9ecae1",
+			"comment": "21 sondes Nmap -sV reçues sur Telnet 2223, depuis 172.20.10.2 et 192.168.56.1",
 			"enabled": true,
 			"metadata": [],
 			"links": [],
