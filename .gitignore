@@ -1,0 +1,5 @@
+*.env
+.env
+logs/downloads/
+downloads/
+cowrie_capture.zip

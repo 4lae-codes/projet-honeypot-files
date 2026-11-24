@@ -1,0 +1,16 @@
+Status: active
+
+     To                         Action      From
+     --                         ------      ----
+[ 1] 22022/tcp                  ALLOW IN    172.20.10.2                # admin SSH
+[ 2] 21/tcp                     ALLOW IN    172.20.10.5                # honeypot 21
+[ 3] 80/tcp                     ALLOW IN    172.20.10.5                # honeypot 80
+[ 4] 3306/tcp                   ALLOW IN    172.20.10.5                # honeypot 3306
+[ 5] 2222/tcp                   ALLOW IN    172.20.10.5                # honeypot 2222
+[ 6] 2223/tcp                   ALLOW IN    172.20.10.5                # honeypot 2223
+[ 7] 21/tcp                     ALLOW IN    172.20.10.2                # honeypot 21
+[ 8] 80/tcp                     ALLOW IN    172.20.10.2                # honeypot 80
+[ 9] 3306/tcp                   ALLOW IN    172.20.10.2                # honeypot 3306
+[10] 2222/tcp                   ALLOW IN    172.20.10.2                # honeypot 2222
+[11] 2223/tcp                   ALLOW IN    172.20.10.2                # honeypot 2223
+

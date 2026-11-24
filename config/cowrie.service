@@ -1,0 +1,23 @@
+[Unit]
+Description=Cowrie SSH/Telnet honeypot
+After=network.target
+
+[Service]
+Type=forking
+User=cowrie
+Group=cowrie
+WorkingDirectory=/home/cowrie/my-honeypot
+Environment=PATH=/home/cowrie/my-honeypot/cowrie-env/bin:/usr/local/bin:/usr/bin:/bin
+PIDFile=/home/cowrie/my-honeypot/var/run/cowrie.pid
+ExecStart=/home/cowrie/my-honeypot/cowrie-env/bin/cowrie start
+ExecStop=/home/cowrie/my-honeypot/cowrie-env/bin/cowrie stop
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=60
+MemoryMax=400M
+CPUQuota=50%
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

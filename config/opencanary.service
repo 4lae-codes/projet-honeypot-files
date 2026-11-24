@@ -1,0 +1,19 @@
+
+
+[Unit]
+Description=OpenCanary honeypot (FTP/HTTP/MySQL)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/opencanary
+Environment=PATH=/opt/opencanary/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStartPre=-/bin/rm -f /opt/opencanary/twistd.pid
+ExecStart=/opt/opencanary/venv/bin/opencanaryd --dev --uid=nobody --gid=nogroup
+Restart=on-failure
+RestartSec=5
+MemoryMax=300M
+CPUQuota=30%
+
+[Install]
+WantedBy=multi-user.target
