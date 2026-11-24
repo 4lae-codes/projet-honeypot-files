@@ -1,0 +1,16 @@
+machine,src_ip,jour,protocol,sessions
+Honeypot (auto-test),172.20.10.6,2026-11-18,ssh,4
+Honeypot (auto-test),172.20.10.6,2026-11-20,ssh,2
+Kali (attaquant),172.20.10.2,2026-11-18,ssh,18
+Kali (attaquant),172.20.10.2,2026-11-18,telnet,18
+Kali (attaquant),172.20.10.2,2026-11-20,ssh,1
+Kali (attaquant),172.20.10.2,2026-11-20,telnet,7
+Kali (attaquant),172.20.10.5,2026-11-24,ssh,16
+Kali (attaquant),172.20.10.5,2026-11-24,telnet,10
+PC Windows d'Alae,172.20.10.2,2026-11-24,ssh,2
+PC Windows d'Alae,172.20.10.3,2026-11-18,ssh,2
+PC Windows d'Alae (host-only),192.168.56.1,2026-11-11,ssh,15
+PC Windows d'Alae (host-only),192.168.56.1,2026-11-11,telnet,11
+PC Windows d'Alae (host-only),192.168.56.1,2026-11-12,ssh,1
+PC Windows d'Alae (host-only),192.168.56.1,2026-11-13,ssh,6
+PC Windows d'Alae (host-only),192.168.56.1,2026-11-13,telnet,9

