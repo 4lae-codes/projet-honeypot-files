@@ -73,7 +73,7 @@
 			"tactic": "credential-access",
 			"score": 54,
 			"color": "#e60d0d",
-			"comment": "33 échecs, 21 succès (root, admin, ubuntu) ; Hydra : 24 tentatives SSH, 24 FTP et MySQL (OpenCanary)",
+			"comment": "54 tentatives Cowrie (33 échecs, 21 succès sur SSH/Telnet). Hydra : 24 FTP + 24 MySQL via OpenCanary, 0 succès (service canari)",
 			"enabled": true,
 			"metadata": [],
 			"links": [],
