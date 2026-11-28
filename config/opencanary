@@ -1,0 +1,10 @@
+/var/tmp/opencanary.log {
+    daily
+    rotate 7
+    maxsize 50M
+    missingok
+    notifempty
+    compress
+    delaycompress
+    copytruncate
+}

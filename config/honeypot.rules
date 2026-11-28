@@ -1,0 +1,10 @@
+-w /etc/ssh/sshd_config.d/ -p wa -k ssh_conf
+-w /etc/sudoers -p wa -k sudoers
+-w /etc/sudoers.d/ -p wa -k sudoers
+-w /etc/ufw/ -p wa -k firewall
+-w /etc/opencanaryd/ -p wa -k canary_conf
+-w /home/cowrie/my-honeypot/etc/ -p wa -k cowrie_conf
+-w /etc/systemd/system/ -p wa -k services
+-w /etc/passwd -p wa -k identity
+-w /etc/shadow -p wa -k identity
+-a always,exit -F arch=b64 -S execve -F euid=0 -F auid>=1000 -F auid!=-1 -k admin_cmd

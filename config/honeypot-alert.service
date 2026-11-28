@@ -1,0 +1,16 @@
+[Unit]
+Description=Alertes honeypot (Discord)
+After=network-online.target cowrie.service opencanary.service
+
+[Service]
+EnvironmentFile=/etc/honeypot-alert.env
+ExecStart=/home/alae/alert-venv/bin/python /home/alae/alert_honeypot.py
+Restart=on-failure
+RestartSec=10
+MemoryMax=100M
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+
+[Install]
+WantedBy=multi-user.target

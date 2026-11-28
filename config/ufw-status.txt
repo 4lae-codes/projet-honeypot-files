@@ -2,15 +2,25 @@ Status: active
 
      To                         Action      From
      --                         ------      ----
-[ 1] 22022/tcp                  ALLOW IN    172.20.10.2                # admin SSH
-[ 2] 21/tcp                     ALLOW IN    172.20.10.5                # honeypot 21
-[ 3] 80/tcp                     ALLOW IN    172.20.10.5                # honeypot 80
-[ 4] 3306/tcp                   ALLOW IN    172.20.10.5                # honeypot 3306
-[ 5] 2222/tcp                   ALLOW IN    172.20.10.5                # honeypot 2222
-[ 6] 2223/tcp                   ALLOW IN    172.20.10.5                # honeypot 2223
+[ 1] 22022/tcp                  LIMIT IN    172.20.10.2                # admin SSH
+[ 2] 21/tcp                     ALLOW IN    172.20.10.4                # honeypot 21
+[ 3] 80/tcp                     ALLOW IN    172.20.10.4                # honeypot 80
+[ 4] 3306/tcp                   ALLOW IN    172.20.10.4                # honeypot 3306
+[ 5] 2222/tcp                   ALLOW IN    172.20.10.4                # honeypot 2222
+[ 6] 2223/tcp                   ALLOW IN    172.20.10.4                # honeypot 2223
 [ 7] 21/tcp                     ALLOW IN    172.20.10.2                # honeypot 21
 [ 8] 80/tcp                     ALLOW IN    172.20.10.2                # honeypot 80
 [ 9] 3306/tcp                   ALLOW IN    172.20.10.2                # honeypot 3306
 [10] 2222/tcp                   ALLOW IN    172.20.10.2                # honeypot 2222
 [11] 2223/tcp                   ALLOW IN    172.20.10.2                # honeypot 2223
+[12] 53                         ALLOW OUT   Anywhere                   (out)
+[13] 67/udp                     ALLOW OUT   Anywhere                   (out)
+[14] 123/udp                    ALLOW OUT   Anywhere                   (out)
+[15] 80/tcp                     ALLOW OUT   Anywhere                   (out)
+[16] 443/tcp                    ALLOW OUT   Anywhere                   (out)
+[17] 53 (v6)                    ALLOW OUT   Anywhere (v6)              (out)
+[18] 67/udp (v6)                ALLOW OUT   Anywhere (v6)              (out)
+[19] 123/udp (v6)               ALLOW OUT   Anywhere (v6)              (out)
+[20] 80/tcp (v6)                ALLOW OUT   Anywhere (v6)              (out)
+[21] 443/tcp (v6)               ALLOW OUT   Anywhere (v6)              (out)
 

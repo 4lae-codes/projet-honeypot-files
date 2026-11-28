@@ -1,0 +1,127 @@
+# Preuves de durcissement - 2026-11-28 15:42:03 - IP VM: 172.20.10.4
+
+## Réseau
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp0s3           UP             172.20.10.4/28 metric 100 fe80::a00:27ff:febc:ee75/64 
+
+## UFW
+Status: active
+Logging: on (low)
+Default: deny (incoming), deny (outgoing), disabled (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22022/tcp                  LIMIT IN    172.20.10.2                # admin SSH
+21/tcp                     ALLOW IN    172.20.10.4                # honeypot 21
+80/tcp                     ALLOW IN    172.20.10.4                # honeypot 80
+3306/tcp                   ALLOW IN    172.20.10.4                # honeypot 3306
+2222/tcp                   ALLOW IN    172.20.10.4                # honeypot 2222
+2223/tcp                   ALLOW IN    172.20.10.4                # honeypot 2223
+21/tcp                     ALLOW IN    172.20.10.2                # honeypot 21
+80/tcp                     ALLOW IN    172.20.10.2                # honeypot 80
+3306/tcp                   ALLOW IN    172.20.10.2                # honeypot 3306
+2222/tcp                   ALLOW IN    172.20.10.2                # honeypot 2222
+2223/tcp                   ALLOW IN    172.20.10.2                # honeypot 2223
+
+53                         ALLOW OUT   Anywhere                  
+67/udp                     ALLOW OUT   Anywhere                  
+123/udp                    ALLOW OUT   Anywhere                  
+80/tcp                     ALLOW OUT   Anywhere                  
+443/tcp                    ALLOW OUT   Anywhere                  
+53 (v6)                    ALLOW OUT   Anywhere (v6)             
+67/udp (v6)                ALLOW OUT   Anywhere (v6)             
+123/udp (v6)               ALLOW OUT   Anywhere (v6)             
+80/tcp (v6)                ALLOW OUT   Anywhere (v6)             
+443/tcp (v6)               ALLOW OUT   Anywhere (v6)             
+
+
+## NAT (redirections 22->2222, 23->2223)
+-P PREROUTING ACCEPT
+-A PREROUTING -p tcp -m tcp --dport 22 -j REDIRECT --to-ports 2222
+-A PREROUTING -p tcp -m tcp --dport 23 -j REDIRECT --to-ports 2223
+
+## Ports en écoute
+Netid State  Recv-Q Send-Q                     Local Address:Port  Peer Address:PortProcess
+udp   UNCONN 0      0                             127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=576,fd=18))
+udp   UNCONN 0      0                          127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=576,fd=16))
+udp   UNCONN 0      0                              127.0.0.1:323        0.0.0.0:*    users:(("chronyd",pid=1070,fd=4))
+udp   UNCONN 0      0      [fe80::a00:27ff:febc:ee75]%enp0s3:546           [::]:*    users:(("systemd-network",pid=961,fd=33))
+udp   UNCONN 0      0                                  [::1]:323           [::]:*    users:(("chronyd",pid=1070,fd=5))
+tcp   LISTEN 0      128                              0.0.0.0:22022      0.0.0.0:*    users:(("sshd",pid=1102,fd=6))
+tcp   LISTEN 0      4096                          127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=576,fd=19))
+tcp   LISTEN 0      50                               0.0.0.0:443        0.0.0.0:*    users:(("twistd",pid=1160,fd=11))
+tcp   LISTEN 0      4096                       127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=576,fd=17))
+tcp   LISTEN 0      50                               0.0.0.0:2222       0.0.0.0:*    users:(("twistd",pid=1274,fd=12))
+tcp   LISTEN 0      50                               0.0.0.0:2223       0.0.0.0:*    users:(("twistd",pid=1274,fd=13))
+tcp   LISTEN 0      50                               0.0.0.0:3306       0.0.0.0:*    users:(("twistd",pid=1160,fd=12))
+tcp   LISTEN 0      50                               0.0.0.0:21         0.0.0.0:*    users:(("twistd",pid=1160,fd=9))
+tcp   LISTEN 0      50                               0.0.0.0:80         0.0.0.0:*    users:(("twistd",pid=1160,fd=10))
+tcp   LISTEN 0      128                                 [::]:22022         [::]:*    users:(("sshd",pid=1102,fd=7))
+
+## SSH (sshd -T)
+Port 22022
+MaxAuthTries 3
+PermitRootLogin no
+PasswordAuthentication no
+X11Forwarding no
+AllowUsers alae
+
+## Noyau
+net.ipv4.tcp_syncookies = 1
+net.ipv4.ip_forward = 0
+
+## Services actifs
+cowrie: active
+opencanary: active
+honeypot-alert: active
+auditd: active
+unattended-upgrades: active
+
+## Isolation systemd (score d'exposition)
+→ Overall exposure level for cowrie.service: 5.4 MEDIUM 😐
+→ Overall exposure level for opencanary.service: 8.5 EXPOSED 🙁
+
+## Test sortant autorisé (HTTPS) - attendu: réponse HTTP
+HTTP/2 200 
+
+## Test sortant bloqué (port 8080) - attendu: code 28 (timeout)
+code curl: 28
+
+## OpenCanary : dernières lignes (dont le test FTP qui déclenche l'alerte)
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 14:29:12.651332", "local_time_adjusted": "2026-11-28 14:29:12.651383", "logdata": {"msg": {"logdata": "Added service from class CanaryMySQL in opencanary.modules.mysql to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 14:29:12.651372"}
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 14:29:12.651659", "local_time_adjusted": "2026-11-28 14:29:12.651691", "logdata": {"msg": {"logdata": "Canary running!!!"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 14:29:12.651682"}
+{"dst_host": "127.0.0.1", "dst_port": 21, "local_time": "2026-11-28 15:09:24.537495", "local_time_adjusted": "2026-11-28 15:09:24.537558", "logdata": {"PASSWORD": "test", "USERNAME": "admin"}, "logtype": 2000, "node_id": "srv-prod-01", "src_host": "127.0.0.1", "src_port": 38670, "utc_time": "2026-11-28 15:09:24.537547"}
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 15:21:01.811461", "local_time_adjusted": "2026-11-28 15:21:01.811497", "logdata": {"msg": {"logdata": "Added service from class CanaryFTP in opencanary.modules.ftp to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 15:21:01.811492"}
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 15:21:01.819791", "local_time_adjusted": "2026-11-28 15:21:01.819841", "logdata": {"msg": {"logdata": "Added service from class CanaryHTTP in opencanary.modules.http to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 15:21:01.819835"}
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 15:21:01.824644", "local_time_adjusted": "2026-11-28 15:21:01.824671", "logdata": {"msg": {"logdata": "Added service from class CanaryHTTPS in opencanary.modules.https to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 15:21:01.824667"}
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 15:21:01.825151", "local_time_adjusted": "2026-11-28 15:21:01.825168", "logdata": {"msg": {"logdata": "Added service from class CanaryMySQL in opencanary.modules.mysql to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 15:21:01.825165"}
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 15:21:01.825324", "local_time_adjusted": "2026-11-28 15:21:01.825334", "logdata": {"msg": {"logdata": "Canary running!!!"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 15:21:01.825331"}
+{"dst_host": "127.0.0.1", "dst_port": 21, "local_time": "2026-11-28 15:36:16.328877", "local_time_adjusted": "2026-11-28 15:36:16.328957", "logdata": {"PASSWORD": "test", "USERNAME": "admin"}, "logtype": 2000, "node_id": "srv-prod-01", "src_host": "127.0.0.1", "src_port": 42402, "utc_time": "2026-11-28 15:36:16.328947"}
+{"dst_host": "127.0.0.1", "dst_port": 21, "local_time": "2026-11-28 15:41:55.338238", "local_time_adjusted": "2026-11-28 15:41:55.338324", "logdata": {"PASSWORD": "test", "USERNAME": "admin"}, "logtype": 2000, "node_id": "srv-prod-01", "src_host": "127.0.0.1", "src_port": 56074, "utc_time": "2026-11-28 15:41:55.338313"}
+
+## Service d'alerte (journal)
+nov. 27 09:00:59 honeypot systemd[1]: Started honeypot-alert.service - Alertes honeypot (Discord).
+-- Boot 2a9a95f6d3d04cec9be559b963e9957e --
+nov. 27 12:26:37 honeypot systemd[1]: Started honeypot-alert.service - Alertes honeypot (Discord).
+-- Boot f9f0018c52b94b6faba8d8785e587048 --
+nov. 28 00:36:56 honeypot systemd[1]: Started honeypot-alert.service - Alertes honeypot (Discord).
+nov. 28 14:27:20 honeypot systemd[1]: Stopping honeypot-alert.service - Alertes honeypot (Discord)...
+nov. 28 14:27:21 honeypot systemd[1]: honeypot-alert.service: Deactivated successfully.
+nov. 28 14:27:21 honeypot systemd[1]: Stopped honeypot-alert.service - Alertes honeypot (Discord).
+-- Boot 86101a78913340a8bd9d9126d56927fd --
+nov. 28 14:29:09 honeypot systemd[1]: Started honeypot-alert.service - Alertes honeypot (Discord).
+-- Boot c829641d4194439a85bee61004c731bc --
+nov. 28 15:21:01 honeypot systemd[1]: Started honeypot-alert.service - Alertes honeypot (Discord).
+
+## Paquets
+auditd 1:4.1.2-1ubuntu1
+authbind 2.2.0ubuntu2
+git 1:2.55.0-1ubuntu1.1
+libauplugin1:amd64 1:4.1.2-1ubuntu1
+net-tools 2.10-2ubuntu1
+nmap 7.99+dfsg-1ubuntu2
+python3-venv 3.14.7-3
+tcpdump 4.99.6-2build1
+ufw 0.36.2-10
+unattended-upgrades 2.12ubuntu9
