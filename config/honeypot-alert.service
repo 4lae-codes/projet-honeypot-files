@@ -1,16 +1,30 @@
 [Unit]
-Description=Alertes honeypot (Discord)
+Description=Alertes temps réel du honeypot (v3)
 After=network-online.target cowrie.service opencanary.service
+Wants=network-online.target
 
 [Service]
+User=honeyalert
+Group=honeyalert
 EnvironmentFile=/etc/honeypot-alert.env
-ExecStart=/home/alae/alert-venv/bin/python /home/alae/alert_honeypot.py
-Restart=on-failure
-RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/honeypot-alert/venv/bin/python /opt/honeypot-alert/alert_honeypot.py
+Restart=always
+RestartSec=5
+StateDirectory=honeypot-alert
+UMask=0027
 MemoryMax=100M
+CPUQuota=20%
 NoNewPrivileges=true
 ProtectSystem=strict
 ProtectHome=read-only
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_INET6
+CapabilityBoundingSet=
 
 [Install]
 WantedBy=multi-user.target

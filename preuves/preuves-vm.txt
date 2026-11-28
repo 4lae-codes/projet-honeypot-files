@@ -1,4 +1,4 @@
-# Preuves de durcissement - 2026-11-28 15:42:03 - IP VM: 172.20.10.4
+# Preuves de durcissement - 2026-11-28 16:41:46 - IP VM: 172.20.10.4
 
 ## Réseau
 lo               UNKNOWN        127.0.0.1/8 ::1/128 
@@ -43,21 +43,21 @@ To                         Action      From
 
 ## Ports en écoute
 Netid State  Recv-Q Send-Q                     Local Address:Port  Peer Address:PortProcess
-udp   UNCONN 0      0                             127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=576,fd=18))
-udp   UNCONN 0      0                          127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=576,fd=16))
-udp   UNCONN 0      0                              127.0.0.1:323        0.0.0.0:*    users:(("chronyd",pid=1070,fd=4))
-udp   UNCONN 0      0      [fe80::a00:27ff:febc:ee75]%enp0s3:546           [::]:*    users:(("systemd-network",pid=961,fd=33))
-udp   UNCONN 0      0                                  [::1]:323           [::]:*    users:(("chronyd",pid=1070,fd=5))
-tcp   LISTEN 0      128                              0.0.0.0:22022      0.0.0.0:*    users:(("sshd",pid=1102,fd=6))
-tcp   LISTEN 0      4096                          127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=576,fd=19))
-tcp   LISTEN 0      50                               0.0.0.0:443        0.0.0.0:*    users:(("twistd",pid=1160,fd=11))
-tcp   LISTEN 0      4096                       127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=576,fd=17))
-tcp   LISTEN 0      50                               0.0.0.0:2222       0.0.0.0:*    users:(("twistd",pid=1274,fd=12))
-tcp   LISTEN 0      50                               0.0.0.0:2223       0.0.0.0:*    users:(("twistd",pid=1274,fd=13))
-tcp   LISTEN 0      50                               0.0.0.0:3306       0.0.0.0:*    users:(("twistd",pid=1160,fd=12))
-tcp   LISTEN 0      50                               0.0.0.0:21         0.0.0.0:*    users:(("twistd",pid=1160,fd=9))
-tcp   LISTEN 0      50                               0.0.0.0:80         0.0.0.0:*    users:(("twistd",pid=1160,fd=10))
-tcp   LISTEN 0      128                                 [::]:22022         [::]:*    users:(("sshd",pid=1102,fd=7))
+udp   UNCONN 0      0                             127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=564,fd=18))
+udp   UNCONN 0      0                          127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=564,fd=16))
+udp   UNCONN 0      0                              127.0.0.1:323        0.0.0.0:*    users:(("chronyd",pid=1063,fd=4))
+udp   UNCONN 0      0      [fe80::a00:27ff:febc:ee75]%enp0s3:546           [::]:*    users:(("systemd-network",pid=956,fd=34))
+udp   UNCONN 0      0                                  [::1]:323           [::]:*    users:(("chronyd",pid=1063,fd=5))
+tcp   LISTEN 0      4096                       127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=564,fd=17))
+tcp   LISTEN 0      50                               0.0.0.0:443        0.0.0.0:*    users:(("twistd",pid=1143,fd=11))
+tcp   LISTEN 0      50                               0.0.0.0:80         0.0.0.0:*    users:(("twistd",pid=1143,fd=10))
+tcp   LISTEN 0      50                               0.0.0.0:21         0.0.0.0:*    users:(("twistd",pid=1143,fd=9))
+tcp   LISTEN 0      50                               0.0.0.0:3306       0.0.0.0:*    users:(("twistd",pid=1143,fd=12))
+tcp   LISTEN 0      50                               0.0.0.0:2223       0.0.0.0:*    users:(("twistd",pid=1286,fd=13))
+tcp   LISTEN 0      50                               0.0.0.0:2222       0.0.0.0:*    users:(("twistd",pid=1286,fd=12))
+tcp   LISTEN 0      4096                          127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=564,fd=19))
+tcp   LISTEN 0      128                              0.0.0.0:22022      0.0.0.0:*    users:(("sshd",pid=1087,fd=6))
+tcp   LISTEN 0      128                                 [::]:22022         [::]:*    users:(("sshd",pid=1087,fd=7))
 
 ## SSH (sshd -T)
 Port 22022
@@ -89,32 +89,38 @@ HTTP/2 200
 code curl: 28
 
 ## OpenCanary : dernières lignes (dont le test FTP qui déclenche l'alerte)
-{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 14:29:12.651332", "local_time_adjusted": "2026-11-28 14:29:12.651383", "logdata": {"msg": {"logdata": "Added service from class CanaryMySQL in opencanary.modules.mysql to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 14:29:12.651372"}
-{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 14:29:12.651659", "local_time_adjusted": "2026-11-28 14:29:12.651691", "logdata": {"msg": {"logdata": "Canary running!!!"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 14:29:12.651682"}
-{"dst_host": "127.0.0.1", "dst_port": 21, "local_time": "2026-11-28 15:09:24.537495", "local_time_adjusted": "2026-11-28 15:09:24.537558", "logdata": {"PASSWORD": "test", "USERNAME": "admin"}, "logtype": 2000, "node_id": "srv-prod-01", "src_host": "127.0.0.1", "src_port": 38670, "utc_time": "2026-11-28 15:09:24.537547"}
-{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 15:21:01.811461", "local_time_adjusted": "2026-11-28 15:21:01.811497", "logdata": {"msg": {"logdata": "Added service from class CanaryFTP in opencanary.modules.ftp to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 15:21:01.811492"}
-{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 15:21:01.819791", "local_time_adjusted": "2026-11-28 15:21:01.819841", "logdata": {"msg": {"logdata": "Added service from class CanaryHTTP in opencanary.modules.http to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 15:21:01.819835"}
-{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 15:21:01.824644", "local_time_adjusted": "2026-11-28 15:21:01.824671", "logdata": {"msg": {"logdata": "Added service from class CanaryHTTPS in opencanary.modules.https to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 15:21:01.824667"}
 {"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 15:21:01.825151", "local_time_adjusted": "2026-11-28 15:21:01.825168", "logdata": {"msg": {"logdata": "Added service from class CanaryMySQL in opencanary.modules.mysql to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 15:21:01.825165"}
 {"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 15:21:01.825324", "local_time_adjusted": "2026-11-28 15:21:01.825334", "logdata": {"msg": {"logdata": "Canary running!!!"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 15:21:01.825331"}
 {"dst_host": "127.0.0.1", "dst_port": 21, "local_time": "2026-11-28 15:36:16.328877", "local_time_adjusted": "2026-11-28 15:36:16.328957", "logdata": {"PASSWORD": "test", "USERNAME": "admin"}, "logtype": 2000, "node_id": "srv-prod-01", "src_host": "127.0.0.1", "src_port": 42402, "utc_time": "2026-11-28 15:36:16.328947"}
 {"dst_host": "127.0.0.1", "dst_port": 21, "local_time": "2026-11-28 15:41:55.338238", "local_time_adjusted": "2026-11-28 15:41:55.338324", "logdata": {"PASSWORD": "test", "USERNAME": "admin"}, "logtype": 2000, "node_id": "srv-prod-01", "src_host": "127.0.0.1", "src_port": 56074, "utc_time": "2026-11-28 15:41:55.338313"}
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 16:36:07.713819", "local_time_adjusted": "2026-11-28 16:36:07.713852", "logdata": {"msg": {"logdata": "Added service from class CanaryFTP in opencanary.modules.ftp to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 16:36:07.713847"}
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 16:36:07.722430", "local_time_adjusted": "2026-11-28 16:36:07.722462", "logdata": {"msg": {"logdata": "Added service from class CanaryHTTP in opencanary.modules.http to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 16:36:07.722455"}
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 16:36:07.727742", "local_time_adjusted": "2026-11-28 16:36:07.727776", "logdata": {"msg": {"logdata": "Added service from class CanaryHTTPS in opencanary.modules.https to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 16:36:07.727770"}
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 16:36:07.728595", "local_time_adjusted": "2026-11-28 16:36:07.728615", "logdata": {"msg": {"logdata": "Added service from class CanaryMySQL in opencanary.modules.mysql to fake"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 16:36:07.728611"}
+{"dst_host": "", "dst_port": -1, "local_time": "2026-11-28 16:36:07.728741", "local_time_adjusted": "2026-11-28 16:36:07.728750", "logdata": {"msg": {"logdata": "Canary running!!!"}}, "logtype": 1001, "node_id": "srv-prod-01", "src_host": "", "src_port": -1, "utc_time": "2026-11-28 16:36:07.728747"}
+{"dst_host": "127.0.0.1", "dst_port": 21, "local_time": "2026-11-28 16:41:38.860057", "local_time_adjusted": "2026-11-28 16:41:38.860116", "logdata": {"PASSWORD": "test", "USERNAME": "admin"}, "logtype": 2000, "node_id": "srv-prod-01", "src_host": "127.0.0.1", "src_port": 53002, "utc_time": "2026-11-28 16:41:38.860108"}
 
 ## Service d'alerte (journal)
-nov. 27 09:00:59 honeypot systemd[1]: Started honeypot-alert.service - Alertes honeypot (Discord).
--- Boot 2a9a95f6d3d04cec9be559b963e9957e --
-nov. 27 12:26:37 honeypot systemd[1]: Started honeypot-alert.service - Alertes honeypot (Discord).
--- Boot f9f0018c52b94b6faba8d8785e587048 --
-nov. 28 00:36:56 honeypot systemd[1]: Started honeypot-alert.service - Alertes honeypot (Discord).
-nov. 28 14:27:20 honeypot systemd[1]: Stopping honeypot-alert.service - Alertes honeypot (Discord)...
-nov. 28 14:27:21 honeypot systemd[1]: honeypot-alert.service: Deactivated successfully.
-nov. 28 14:27:21 honeypot systemd[1]: Stopped honeypot-alert.service - Alertes honeypot (Discord).
--- Boot 86101a78913340a8bd9d9126d56927fd --
 nov. 28 14:29:09 honeypot systemd[1]: Started honeypot-alert.service - Alertes honeypot (Discord).
 -- Boot c829641d4194439a85bee61004c731bc --
 nov. 28 15:21:01 honeypot systemd[1]: Started honeypot-alert.service - Alertes honeypot (Discord).
+nov. 28 15:43:25 honeypot systemd[1]: Stopping honeypot-alert.service - Alertes honeypot (Discord)...
+nov. 28 15:43:25 honeypot systemd[1]: honeypot-alert.service: Deactivated successfully.
+nov. 28 15:43:25 honeypot systemd[1]: Stopped honeypot-alert.service - Alertes honeypot (Discord).
+nov. 28 15:43:25 honeypot systemd[1]: honeypot-alert.service: Consumed 1.416s CPU time over 22min 24.701s wall clock time, 20.4M memory peak.
+-- Boot bf2a53e692c740c0bee27b70bac8af84 --
+nov. 28 16:36:07 honeypot systemd[1]: Started honeypot-alert.service - Alertes honeypot (Discord).
+nov. 28 16:36:56 honeypot systemd[1]: Stopping honeypot-alert.service - Alertes honeypot (Discord)...
+nov. 28 16:36:56 honeypot systemd[1]: honeypot-alert.service: Deactivated successfully.
+nov. 28 16:36:56 honeypot systemd[1]: Stopped honeypot-alert.service - Alertes honeypot (Discord).
+nov. 28 16:41:25 honeypot systemd[1]: Started honeypot-alert.service - Alertes temps réel du honeypot (v3).
+nov. 28 16:41:27 honeypot python[2130]: [!] Ni DISCORD_WEBHOOK ni TELEGRAM_TOKEN/CHAT_ID définis, affichage console :
+nov. 28 16:41:27 honeypot python[2130]: ✅ Système d'alerte honeypot v3 démarré (Cowrie + OpenCanary).
+nov. 28 16:41:27 honeypot python[2130]: [*] Surveillance de /home/cowrie/my-honeypot/var/log/cowrie/cowrie.json
+nov. 28 16:41:27 honeypot python[2130]: [*] Surveillance de /var/tmp/opencanary.log
 
 ## Paquets
+acl 2.4.0-1
 auditd 1:4.1.2-1ubuntu1
 authbind 2.2.0ubuntu2
 git 1:2.55.0-1ubuntu1.1

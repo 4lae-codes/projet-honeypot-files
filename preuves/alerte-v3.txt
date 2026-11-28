@@ -1,0 +1,49 @@
+# Service d'alerte v3 - 2026-11-28 16:41:56
+
+## Utilisateur dédié
+uid=999(honeyalert) gid=978(honeyalert) groups=978(honeyalert)
+
+## ACL sur les deux journaux
+# file: /home/cowrie/my-honeypot/var/log/cowrie/cowrie.json
+user:honeyalert:r--
+# file: /var/tmp/opencanary.log
+user:honeyalert:r--
+
+## Lecture autorisée (attendu : OK x2)
+OK cowrie.json
+OK opencanary.log
+
+## Lecture refusée (attendu : Permission denied x3)
+head: impossible d'ouvrir '/etc/shadow' en lecture: Permission denied
+head: impossible d'ouvrir '/etc/honeypot-alert.env' en lecture: Permission denied
+ls: impossible d'ouvrir le répertoire '/home/alae' : Permission refusée
+
+## Redémarrage automatique après kill -9 (attendu : active)
+active
+
+## Utilisateur du processus
+honeyalert       /opt/honeypot-alert/venv/bin/python /opt/honeypot-alert/alert_honeypot.py
+
+## Isolation systemd
+→ Overall exposure level for honeypot-alert.service: 4.6 OK 🙂
+
+## Types d'événements réels d'OpenCanary (logtype)
+     90 "logtype": 1001
+     32 "logtype": 2000
+      1 "logtype": 3000
+      3 "logtype": 3001
+     24 "logtype": 8001
+
+## Journal du service
+nov. 28 16:36:56 honeypot systemd[1]: Stopped honeypot-alert.service - Alertes honeypot (Discord).
+nov. 28 16:41:25 honeypot systemd[1]: Started honeypot-alert.service - Alertes temps réel du honeypot (v3).
+nov. 28 16:41:27 honeypot python[2130]: [!] Ni DISCORD_WEBHOOK ni TELEGRAM_TOKEN/CHAT_ID définis, affichage console :
+nov. 28 16:41:27 honeypot python[2130]: ✅ Système d'alerte honeypot v3 démarré (Cowrie + OpenCanary).
+nov. 28 16:41:27 honeypot python[2130]: [*] Surveillance de /home/cowrie/my-honeypot/var/log/cowrie/cowrie.json
+nov. 28 16:41:27 honeypot python[2130]: [*] Surveillance de /var/tmp/opencanary.log
+nov. 28 16:41:57 honeypot systemd[1]: honeypot-alert.service: Sent signal SIGKILL to main process 2130 (python) on client request.
+nov. 28 16:41:57 honeypot systemd[1]: honeypot-alert.service: Killed unit cgroup '/system.slice/honeypot-alert.service' with SIGKILL on client request.
+nov. 28 16:41:57 honeypot systemd[1]: honeypot-alert.service: Main process exited, code=killed, status=9/KILL
+nov. 28 16:41:57 honeypot systemd[1]: honeypot-alert.service: Failed with result 'signal'.
+nov. 28 16:42:02 honeypot systemd[1]: honeypot-alert.service: Scheduled restart job, restart counter is at 1.
+nov. 28 16:42:02 honeypot systemd[1]: Started honeypot-alert.service - Alertes temps réel du honeypot (v3).
